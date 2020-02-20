@@ -4,13 +4,12 @@ source globals.sh
 
 singularity run --cleanenv \
     --bind $project_dir:/home \
-    /jukebox/hasson/singularity/fmriprep/fmriprep-v1.2.3.sqsh \
+    /jukebox/hasson/singularity/fmriprep/fmriprep-v1.4.0.sqsh \
     --participant-label sub-$1 \
     --fs-license-file /home/code/preprocessing/license.txt \
     --no-submm-recon \
     --bold2t1w-dof 6 --nthreads 8 --omp-nthreads 8 \
-    --output-space T1w template fsaverage6 \
-    --template MNI152NLin2009cAsym \
+    --output-spaces T1w fsaverage:den-41k MNI152NLin2009cAsym \
     --write-graph --work-dir /home/data/bids/derivatives/work \
     /home/data/bids /home/data/bids/derivatives participant
 
