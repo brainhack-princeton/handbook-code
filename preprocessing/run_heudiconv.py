@@ -15,21 +15,14 @@ data_dir = argv[4]
 print("Running heudiconv for subject {0} session {1}".format(subj_id, session_id))
 
 run("singularity exec --cleanenv --bind {0}:/home "
-    "/jukebox/hasson/singularity/heudiconv/heudiconv.sqsh "
+    "/jukebox/hasson/singularity/heudiconv/heudiconv-v0.8.0.simg "
     "heudiconv -f reproin --subject {2} --ses {3} --bids --locator /home/bids --files "
     "/home/dicom/{1}".format(data_dir, subj_dir.split('/')[-1], subj_id, session_id),
     shell=True)
 
 
-# IF YOU ARE IN THE MIDDLE OF AN EXISTING STUDY AND YOUR PROGRAM CARD HAS CHANGED, 
-# YOU SHOULD REPLACE -o /home/bids WITH THE --LOCATOR FLAG BELOW AND DIRECT IT TO YOUR CURRENT DIRECTORY STRUCTURE:
+# NOTES:
 
-# --locator /home/bids/Norman/McDevitt/7137_viodiff
-
-# EXAMPLE:
-
-# run("singularity exec --cleanenv --bind {0}:/home "
-#     "/jukebox/hasson/singularity/heudiconv/heudiconv.sqsh "
-#     "heudiconv -f reproin --subject {2} --ses {3} --bids --locator /home/bids/Norman/McDevitt/7137_viodiff --files "
-#     "/home/conquest/{1}".format(fmri_dir, subj_dir.split('/')[-1], subj_id, session_id),
-#     shell=True)
+# because of the --bind command, data_dir (as defined in globals.sh) is called /home within the singularity command
+# --locator /home/bids is where is the output files will be saved
+# /home/dicom/ is where HeuDiConv will look for the subj_dir containing the raw dicom files to input to HeuDiConv
