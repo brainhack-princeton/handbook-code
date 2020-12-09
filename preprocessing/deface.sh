@@ -3,7 +3,7 @@
 # LOAD GLOBAL VARIABLES AND MODULES ON THE CLUSTER
 source globals.sh   
 module load fsl/6.0.2
-module load pydeface/2.0.0
+module load pydeface/2.0.0 #you can remove this line if you are using pydeface in your own conda environment
 
 sid=$1
 session=$2
