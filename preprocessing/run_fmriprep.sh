@@ -2,16 +2,23 @@
 
 source globals.sh
 
+export SINGULARITYENV_TEMPLATEFLOW_HOME=/home/fmriprep/.cache/templateflow
+
 singularity run --cleanenv \
-    --bind $project_dir:/home \
-    /jukebox/hasson/singularity/fmriprep/fmriprep-v1.4.0.sqsh \
+    --bind $project_dir:/project \
+    --bind $scratch_dir:/scratch \
+    --bind /usr/people \
+    --bind /jukebox/hasson/templateflow:/home/fmriprep/.cache/templateflow \
+    /jukebox/hasson/singularity/fmriprep/fmriprep-v20.2.0.simg \
     --participant-label sub-$1 \
-    --fs-license-file /home/code/preprocessing/license.txt \
+    --fs-license-file /project/code/preprocessing/license.txt \
     --no-submm-recon \
-    --bold2t1w-dof 6 --nthreads 8 --omp-nthreads 8 \
-    --output-spaces T1w fsaverage:den-41k MNI152NLin2009cAsym \
-    --write-graph --work-dir /home/data/bids/derivatives/work \
-    /home/data/bids /home/data/bids/derivatives participant
+    --bold2t1w-dof 6 \
+    --nthreads 8 --omp-nthreads 8 \
+    --output-spaces T1w fsaverage:den-41k \
+                    MNI152NLin2009cAsym:res-native \
+    --write-graph --work-dir /scratch \
+    /project/data/bids /project/data/bids/derivatives participant
 
  # many usage options
  # SEE HERE: https://fmriprep.readthedocs.io/en/stable/usage.html
