@@ -9,10 +9,10 @@
 #SBATCH --partition=all
 
 # How long is job?
-#SBATCH -t 34:00:00
+#SBATCH -t 18:00:00
 
 # Set array to be your subject number
-#SBATCH --array=001
+#SBATCH --array=001, 002, 003
 
 # Where to output log files? The log file will be in the format of the job ID_array number
 # make sure this logs directory exists!! otherwise the script won't run

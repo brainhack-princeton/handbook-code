@@ -5,8 +5,8 @@
 # Name of job?
 #SBATCH --job-name=mriqc
 
-# Set array to be your subject number
-#SBATCH --array=001
+# Set array to be your subject number(s)
+#SBATCH --array=001, 002, 003
 
 # Where to output log files?
 # make sure this logs directory exists!! otherwise the script won't run
@@ -45,7 +45,6 @@ echo "Finished running MRIQC on sub-$subj"
 date
 
 # GROUP LEVEL
-# NOTE: group level will only work once you have multiple subjects in your dataset
 echo "Running MRIQC on group"
 
 ./run_mriqc_group.sh
