@@ -47,7 +47,7 @@ cat $raw_dir/check_volumes/$output
 
 # STEP 3: unzip dicoms
 # NOTE: Look at your dcm folder and check that your dicoms end in .gz. If they end in .gz, you need to run this line.
-# Otherwise, don't run. If they have mutliple .gz.gz endings, you will have to run multiple times until they are no longer
+# Otherwise, don't run. If they have multiple .gz.gz endings, you will have to run multiple times until they are no longer
 # zipped!
 echo "unzipping session $session dicoms"
 gunzip $raw_dir/$subj_dir/dcm/*.gz # NOTE: you may have to do this multiple times if your files are double zipped
